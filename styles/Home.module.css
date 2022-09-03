@@ -45,7 +45,7 @@
 .title {
 	margin: 0;
 	line-height: 1.15;
-	font-size: 4rem;
+	font-size: 4rem !important;
 	padding: 2rem 0;
 }
 
@@ -69,8 +69,28 @@
 	text-align: -webkit-center;
 }
 
+.error {
+	color: #f62817;
+	line-height: 2.5rem;
+}
+
 @media (max-width: 600px) {
+	.container {
+		padding: 0 0.5rem;
+	}
+	.main {
+		width: 100% !important;
+		display: flex;
+	}
+	.register {
+		width: 100%;
+	}
+	.empty {
+		width: 100%;
+		position: fixed;
+	}
 	.table {
+		width: 100%;
 		overflow-x: auto;
 	}
 }

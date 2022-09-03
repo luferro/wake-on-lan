@@ -13,12 +13,8 @@ a {
 }
 
 * {
+	font-size: 1.1rem !important;
 	box-sizing: border-box;
-}
-
-.error {
-	color: #f62817;
-	line-height: 2.5rem;
 }
 
 @media (prefers-color-scheme: dark) {

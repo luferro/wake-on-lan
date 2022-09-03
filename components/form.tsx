@@ -63,7 +63,7 @@ const Form = ({ handleRefresh, handleModal }: Props) => {
 					required
 				/>
 			</Input.Wrapper>
-			{formErrors.name && <span className="error">{formErrors.name}</span>}
+			{formErrors.name && <span className={styles.error}>{formErrors.name}</span>}
 			<br />
 			<Input.Wrapper id="mac" withAsterisk label="MAC address" styles={{ label: { color: 'white' } }}>
 				<Input
@@ -75,7 +75,7 @@ const Form = ({ handleRefresh, handleModal }: Props) => {
 					required
 				/>
 			</Input.Wrapper>
-			{formErrors.mac && <span className="error">{formErrors.mac}</span>}
+			{formErrors.mac && <span className={styles.error}>{formErrors.mac}</span>}
 			<br />
 			<Input.Wrapper
 				id="address"
@@ -92,7 +92,7 @@ const Form = ({ handleRefresh, handleModal }: Props) => {
 					required
 				/>
 			</Input.Wrapper>
-			{formErrors.address && <span className="error">{formErrors.address}</span>}
+			{formErrors.address && <span className={styles.error}>{formErrors.address}</span>}
 			<br />
 			<Button
 				type="submit"
