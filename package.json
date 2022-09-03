@@ -11,16 +11,18 @@
 	"dependencies": {
 		"@mantine/core": "^5.2.4",
 		"@mantine/notifications": "^5.2.4",
+		"i": "^0.3.7",
 		"next": "12.2.5",
+		"npm": "^8.19.1",
 		"react": "18.2.0",
 		"react-dom": "18.2.0",
-		"wol": "^1.0.7"
+		"wake_on_lan": "^1.0.0"
 	},
 	"devDependencies": {
 		"@types/node": "18.7.14",
 		"@types/react": "18.0.18",
 		"@types/react-dom": "18.0.6",
-		"@types/wol": "^1.0.1",
+		"@types/wake_on_lan": "^0.0.30",
 		"@typescript-eslint/eslint-plugin": "^5.36.1",
 		"@typescript-eslint/parser": "^5.36.1",
 		"eslint": "^8.23.0",
