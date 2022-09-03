@@ -98,9 +98,8 @@ const Devices = () => {
 						))}
 					</tbody>
 				</Table>
+				<span className={styles.empty}>{list.length === 0 ? 'No devices registered.' : ''}</span>
 			</div>
-
-			<span className={styles.empty}>{list.length === 0 ? 'No devices registered.' : ''}</span>
 		</>
 	);
 };
