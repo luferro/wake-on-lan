@@ -7,6 +7,7 @@ import Form from './form';
 
 interface Device {
 	name: string;
+	mac: string;
 	address: string;
 }
 
@@ -26,11 +27,11 @@ const Devices = () => {
 		handleRefresh();
 	};
 
-	const wakeOnLan = async (address: string) => {
+	const wakeOnLan = async (mac: string, address: string) => {
 		const res = await window.fetch(`${window.location.origin}/api/wol`, {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({ address }),
+			body: JSON.stringify({ mac, address }),
 		});
 		const data = (await res.json()) as { message: string };
 
@@ -40,10 +41,12 @@ const Devices = () => {
 	const fetchDevices = () => {
 		const devices = Object.keys(localStorage)
 			.map((name) => {
-				const address = localStorage.getItem(name);
-				if (!address || !name.startsWith('D-')) return;
+				const item = localStorage.getItem(name);
+				if (!item || !name.startsWith('D-')) return;
 
-				return { name, address };
+				const { mac, address } = JSON.parse(item) as Omit<Device, 'name'>;
+
+				return { name, mac, address };
 			})
 			.filter((device): device is NonNullable<typeof device> => !!device);
 		setList(devices);
@@ -66,32 +69,37 @@ const Devices = () => {
 			<Button onClick={() => handleModal(true)} className={styles.register} color="green">
 				Register device
 			</Button>
-			<Table striped highlightOnHover>
-				<thead>
-					<tr>
-						<th>Name</th>
-						<th>MAC Address</th>
-						<th>Wake on Lan</th>
-						<th>Forget device</th>
-					</tr>
-				</thead>
-				<tbody>
-					{list.map(({ name, address }) => (
-						<tr key={address}>
-							<td>{name.replace('D-', '')}</td>
-							<td>{address}</td>
-							<td>
-								<Button onClick={() => wakeOnLan(address)}>Wake up</Button>
-							</td>
-							<td>
-								<ActionIcon onClick={() => handleDelete(name)}>
-									<Image src="/svg/trash.svg" alt="Trash Icon" width={28} height={28} />
-								</ActionIcon>
-							</td>
+			<div className={styles.table}>
+				<Table striped highlightOnHover>
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>MAC Address</th>
+							<th>Public IP Address or DDNS</th>
+							<th>Wake on Lan</th>
+							<th>Forget device</th>
 						</tr>
-					))}
-				</tbody>
-			</Table>
+					</thead>
+					<tbody>
+						{list.map(({ name, mac, address }) => (
+							<tr key={mac}>
+								<td>{name.replace('D-', '')}</td>
+								<td>{mac}</td>
+								<td>{address}</td>
+								<td>
+									<Button onClick={() => wakeOnLan(mac, address)}>Wake up</Button>
+								</td>
+								<td>
+									<ActionIcon onClick={() => handleDelete(name)}>
+										<Image src="/svg/trash.svg" alt="Trash Icon" width={28} height={28} />
+									</ActionIcon>
+								</td>
+							</tr>
+						))}
+					</tbody>
+				</Table>
+			</div>
+
 			<span className={styles.empty}>{list.length === 0 ? 'No devices registered.' : ''}</span>
 		</>
 	);
