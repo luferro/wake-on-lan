@@ -1,4 +1,4 @@
-import { Table, Button, Modal, ActionIcon } from '@mantine/core';
+import { Table, Button, Modal, ActionIcon, Alert } from '@mantine/core';
 import { showNotification } from '@mantine/notifications';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
@@ -62,8 +62,21 @@ const Devices = () => {
 				opened={opened}
 				onClose={() => handleModal(false)}
 				title="Register device"
-				styles={{ modal: { background: '#0d1117' } }}
+				size="xl"
+				styles={{ title: { color: '#fff' }, modal: { background: '#0d1117' } }}
 			>
+				<Alert icon={<Image src="/svg/info.svg" alt="Info Icon" width={28} height={28} />} variant="filled">
+					Registered devices will only persist in your current browser.
+				</Alert>
+				<br />
+				<Alert
+					icon={<Image src="/svg/help.svg" alt="Help Icon" width={28} height={28} />}
+					variant="filled"
+					color="orange"
+				>
+					Having issues? Don't forget to forward port 9 so that your device can receive the magic packet.
+				</Alert>
+				<br />
 				<Form handleRefresh={handleRefresh} handleModal={handleModal} />
 			</Modal>
 			<Button onClick={() => handleModal(true)} className={styles.register} color="green">

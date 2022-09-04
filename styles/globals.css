@@ -8,12 +8,11 @@ body {
 }
 
 a {
-	color: #fff;
 	text-decoration: none;
 }
 
 * {
-	font-size: 1.1rem !important;
+	font-size: 1rem !important;
 	box-sizing: border-box;
 }
 
@@ -22,10 +21,8 @@ a {
 		color-scheme: dark;
 	}
 	body {
-		background: #0d1117;
-	}
-	* {
 		color: #fff;
+		background: #0d1117;
 	}
 	table th {
 		background: #161b22;
